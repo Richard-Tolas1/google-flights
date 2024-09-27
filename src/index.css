@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    input[type="text"]::-webkit-text-decoration,
+    input[type="text"]::-webkit-text-cancel-button,
+    input[type="text"]::-webkit-text-results-button,
+    input[type="text"]::-webkit-search-results-decoration { display: none; }
+  }

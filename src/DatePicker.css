@@ -1,0 +1,50 @@
+.custom-date-picker {
+    display: flex;
+    align-items: center;
+    background-color: #2C2C2E; /* Match the background color */
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: white;
+    font-size: 16px;
+    width: 100%; /* Full width of container */
+  }
+  
+  .calendar-icon {
+    margin-right: 10px;
+    color: #B0B0B0; /* Gray color for the icon */
+  }
+  
+  .nav-icon {
+    color: #B0B0B0;
+    cursor: pointer;
+  }
+  
+  .react-date-picker__wrapper {
+    border: none;
+    background: transparent;
+  }
+  
+  .react-date-picker__inputGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .react-date-picker__inputGroup__input {
+    color: white;
+    background-color: transparent;
+    font-weight: bold;
+  }
+  
+  .react-date-picker__clear-button {
+    display: none;
+  }
+  
+  /* Adjust buttons and input size */
+  .react-date-picker__button {
+    padding: 0;
+    margin: 0 5px;
+    background: none;
+    border: none;
+  }
+  

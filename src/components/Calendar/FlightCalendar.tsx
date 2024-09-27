@@ -1,0 +1,154 @@
+import { useState } from "react";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+import Calendar from "react-calendar";
+import "../../calendar.css";
+import Input from "../InputFields/Input";
+
+function FlightCalendar() {
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [dateRange, setDateRange] = useState<[Date, Date]>([
+    new Date(),
+    new Date(new Date().setDate(new Date().getDate() + 10)),
+  ]);
+
+  const currentDate = new Date();
+
+  // Helper function to format the date
+  const formatDate = (date: Date) =>
+    date.toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
+
+  const fromDate = dateRange[0];
+  const toDate = dateRange[1];
+
+  // Format dates for display
+  const formattedFromDate = formatDate(fromDate);
+  const formattedToDate = formatDate(toDate);
+
+  // Handle calendar toggle on input click
+  const handleInputClick = () => {
+    setShowCalendar((prev) => !prev);
+  };
+
+  // Handle calendar date selection
+  const handleCalendarChange = (value: [Date, Date]) => {
+    setDateRange(value);
+    setShowCalendar(false);
+  };
+
+  const handlePreviousFromDate = () => {
+    const prevFromDate = new Date(fromDate);
+    prevFromDate.setDate(prevFromDate.getDate() - 1);
+    setDateRange([prevFromDate, toDate]);
+  };
+
+  const handleNextFromDate = () => {
+    const nextFromDate = new Date(fromDate);
+    nextFromDate.setDate(nextFromDate.getDate() + 1);
+    setDateRange([nextFromDate, toDate]);
+  };
+
+  const handlePreviousToDate = () => {
+    const prevToDate = new Date(toDate);
+    prevToDate.setDate(prevToDate.getDate() - 1);
+    setDateRange([fromDate, prevToDate]);
+  };
+
+  const handleNextToDate = () => {
+    const nextToDate = new Date(toDate);
+    nextToDate.setDate(nextToDate.getDate() + 1);
+    setDateRange([fromDate, nextToDate]);
+  };
+
+  return (
+    <div className="relative border-2 border-[#6e7276] px-4 rounded-[4px]">
+      <div className="flex items-center gap-5">
+        <div className="flex">
+          <div className="flex items-center gap-2 my-4">
+            <div>
+              <DateRangeIcon sx={{ color: "#6e7276" }} />
+            </div>
+            <div>
+              <Input
+                type="text"
+                value={formattedFromDate}
+                name="fromDate"
+                id="fromDate"
+                className="bg-transparent max-w-28 cursor-pointer focus:ring-0 outline-none border-none p-0"
+                onClick={handleInputClick}
+              />
+            </div>
+          </div>
+          <div className="flex">
+            <button
+              type="button"
+              className="hover:bg-[#bdc1c6] hover:bg-opacity-10"
+              onClick={handlePreviousFromDate} // Go to previous day for fromDate
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              type="button"
+              className="hover:bg-[#bdc1c6] hover:bg-opacity-10"
+              onClick={handleNextFromDate} // Go to next day for fromDate
+            >
+              <ChevronRightIcon />
+            </button>
+          </div>
+        </div>
+        <div className="text-[#6e7276] rotate-90">
+          <HorizontalRuleIcon />
+        </div>
+        <div className="flex">
+          <div className="flex items-center gap-2 my-4">
+            <div>
+              <Input
+                type="text"
+                value={formattedToDate}
+                name="toDate"
+                id="toDate"
+                className="bg-transparent max-w-28 cursor-pointer border-none p-0"
+                onClick={handleInputClick}
+              />
+            </div>
+          </div>
+          <div className="flex">
+            <button
+              type="button"
+              className="hover:bg-[#bdc1c6] hover:bg-opacity-10"
+              onClick={handlePreviousToDate}
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              type="button"
+              className="hover:bg-[#bdc1c6] hover:bg-opacity-10"
+              onClick={handleNextToDate}
+            >
+              <ChevronRightIcon />
+            </button>
+          </div>
+        </div>
+      </div>
+      {showCalendar && (
+        <div>
+          <Calendar
+            className="absolute top-[90%] left-0 z-50 dark:bg-[#36373a] bg-white"
+            selectRange={true}
+            onChange={handleCalendarChange}
+            value={dateRange}
+            minDate={currentDate}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default FlightCalendar;
