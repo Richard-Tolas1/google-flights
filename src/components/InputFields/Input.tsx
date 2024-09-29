@@ -13,6 +13,7 @@ interface Props {
   type: React.HTMLInputTypeAttribute;
   disabled?: boolean;
   placeHolder?: string;
+  inputClassName?: string
 }
 
 function Input({ ...props }: Props) {
@@ -21,7 +22,7 @@ function Input({ ...props }: Props) {
       <div className="flex gap-1">
         <div>{props.icon}</div>
         <input
-          className="bg-transparent border-none focus:ring-0 outline-none"
+          className={`bg-transparent border-none focus:ring-0 outline-none ${props.inputClassName}`}
           placeholder={props.placeHolder}
           type={props.type}
           max={props.max}

@@ -5,7 +5,7 @@ export default function () {
       fill="none"
       className="lg:w-[1248px] md:w-[1248px] w-[430px]"
       viewBox="0 0 1024 245">
-      <g clip-path="url(#a)">
+      <g clipPath="url(#a)">
         <path fill="#3C4043" d="M1024 0H32.2v203.2H1024V0Z" />
         <path
           fill="#202124"
@@ -73,13 +73,13 @@ export default function () {
         />
         <path
           stroke="#5F6368"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           d="M183.3 95.9a28.905 28.905 0 0 1 22.3 10.5"
         />
         <path
           stroke="#3C4043"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M321.1 81a26.897 26.897 0 0 1 25 17.3m-42.3-17.8c1.8 3.7 3.3 7.5 4.3 11.4m106.1-12c1.7 1.8 3.1 3.8 4.3 6M369.7 96a24.001 24.001 0 0 1 1.3-7m63-3.2c1 1.9 1.6 4 1.6 6.1m22.4 3.6c.5 1.5.9 3.1 1 4.7m12.3 1.8c.7-2.1 1.8-4 3-6m86.2-35c3.5-.1 7 .4 10.4 1.5m42.8-12.8a10.501 10.501 0 0 1 7.8-3.7m5.5 7.9a14.008 14.008 0 0 1 5.6-11.4m60 8.7a16.992 16.992 0 0 1 5.5 12.5m20.5 7.8c.1-7.7 3-15.1 8.2-20.8m53 20.8a30.989 30.989 0 0 1-2.5 12m7.9 5.2c0 1.8-.3 3.5-1.1 5"
         />
         <path
@@ -112,7 +112,7 @@ export default function () {
         />
         <path
           stroke="#202124"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M722.7 192.4s6.8-6.1 10.6-18.1"
         />
         <path
@@ -121,7 +121,7 @@ export default function () {
         />
         <path
           stroke="#202124"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="m731.4 179.4 4.1-1.3m-6.7 6.2-1.9-3.9m-41.5 5.1c-.1-4.3-.8-8.6-2.1-12.7m1.5 4.6 2.3-2.7m-2.1 6-3.4-2.5"
         />
         <path
@@ -130,7 +130,7 @@ export default function () {
         />
         <path
           stroke="#202124"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M593.4 142v8m2.1-25.5v8m-2.6-6.5v8m5.1-9.5v8m5.4-7.5v3.7m2.2-5.1v3.7m2.9-3.1v3.7m-23.3-1.5v7.9m-2.2-6.8v7.9m-7.6-9.8v8m-2.1-6.1v7.9m-2.7-8.4v8m-9.4-8.2v8m-3.2-6.3v7.9m-3-7.1v8m-3.2-8v8m-3.2-9.8v7.9m-2.1-6.1v8m-2.5-8.8v7.9m-10-7.4v8m-1.7-6.2v8m-2-9.2v8m-2.5-6.6v8m-2.5-7v8m-3.3-9.4v8m-2.7-9v8m-4.8-6.2v8m-2.1-8.6v8m-2.6-6.4v8m-2.9-9v8m-4.9-6.1v8m-3-7.5v7.9m-2-8.7v8m-2.3-6.4v7.9m-4.3-8.5v8m-63.8 1.2v8m-2.5-6.4v7.9m-5.3-7v8m-3.1-8.4v8m-2.3-6.1v8m-2.9-8.4v8m-2.4-6.7v8"
         />
         <path
@@ -139,8 +139,8 @@ export default function () {
         />
         <path
           stroke="#5F6368"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           d="M76.3 167.4V25.8m0 45.7L62.8 58m13.5 43.2L96 81.5M76.3 136l-22.7-22.8m69.5-41.7v82.8m0-45.6 8.8-8.8m-8.8 36.1-8.8-8.8m51-54.8v93.2m9.9-74.4-10 10m.1 41.6L144.6 122m660.9-2.5V182m9.4-47.2-8.7 8.6m-13.8 13.3 13.1 13.1m37-86.2v79.7m8.3-60.7-7.8 7.8m-11.8 24.4 11.3 11.2m39-105.5V146m5.9-70.4-5.9 5.9m-10.4 34.3 10.4 10.4M908.2 89v64.9m10.2-49.8-10.2 10.2M898 129.1l10.2 10.2m42.3-85.4v82.2m10-56.8-9.8 9.8m-11.8 9.5 11.6 11.6"
         />
         <path
@@ -149,7 +149,7 @@ export default function () {
         />
         <path
           stroke="#202124"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M254.1 174.1s4.4-12.8 14.2-18.9m-6.7 5.8-1-4.6m-2.6 9.8h4.4m33.1 21.1s.8-10.7 6-16.9"
         />
         <path
@@ -158,7 +158,7 @@ export default function () {
         />
         <path
           stroke="#202124"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M269.5 171s2.7 8.6 1.9 13.7m26.9-8.9-2.3-4.9m.8 9.5 3.8-1m-33-4 3.2.7m-.3-2.5 2-2"
         />
         <path
@@ -191,15 +191,15 @@ export default function () {
         />
         <path
           stroke="#202124"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           d="M706.8 169.5h48.4"
         />
         <path
           stroke="#F4AFB6"
-          stroke-linecap="round"
-          stroke-miterlimit="10"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeMiterlimit="10"
+          strokeWidth="2"
           d="M731.4 142a7.001 7.001 0 0 1-.2-4"
         />
         <path
@@ -265,8 +265,8 @@ export default function () {
         />
         <path
           stroke="#343757"
-          stroke-miterlimit="10"
-          stroke-width="1.2"
+          strokeMiterlimit="10"
+          strokeWidth="1.2"
           d="M720.3 123.1h-7a3.006 3.006 0 0 1-2.186-.843 3.005 3.005 0 0 1-.914-2.157v-4.2"
         />
         <path
@@ -284,7 +284,7 @@ export default function () {
         />
         <path
           stroke="#265BB6"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M739.5 150v-1.8a2 2 0 0 1 4 0v1.7"
         />
         <path
@@ -297,7 +297,7 @@ export default function () {
         />
         <path
           stroke="#202124"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M755.2 184s0-8.5 8.6-16m-5.5 6.3 3.9-1.2m-5.2 3.8-1.9-3"
         />
       </g>

@@ -7,16 +7,22 @@ import Calendar from "react-calendar";
 import "../../calendar.css";
 import Input from "../InputFields/Input";
 
-function FlightCalendar() {
+interface FlightCalendarProps {
+  fromDate: Date;
+  toDate: Date;
+  onDateChange: (dates: [Date, Date]) => void;
+}
+
+function FlightCalendar({
+  fromDate,
+  toDate,
+  onDateChange,
+}: FlightCalendarProps) {
   const [showCalendar, setShowCalendar] = useState(false);
-  const [dateRange, setDateRange] = useState<[Date, Date]>([
-    new Date(),
-    new Date(new Date().setDate(new Date().getDate() + 10)),
-  ]);
+  const [editingFromDate, setEditingFromDate] = useState(true)
 
   const currentDate = new Date();
 
-  // Helper function to format the date
   const formatDate = (date: Date) =>
     date.toLocaleDateString("en-US", {
       weekday: "short",
@@ -24,46 +30,45 @@ function FlightCalendar() {
       day: "numeric",
     });
 
-  const fromDate = dateRange[0];
-  const toDate = dateRange[1];
-
-  // Format dates for display
   const formattedFromDate = formatDate(fromDate);
   const formattedToDate = formatDate(toDate);
 
-  // Handle calendar toggle on input click
-  const handleInputClick = () => {
-    setShowCalendar((prev) => !prev);
+  const handleInputClick = (isFromDate: boolean) => {
+    setEditingFromDate(isFromDate);
+    setShowCalendar(true);
   };
 
-  // Handle calendar date selection
-  const handleCalendarChange = (value: [Date, Date]) => {
-    setDateRange(value);
+  const handleCalendarChange = (value: Date) => {
+    if (editingFromDate) {
+      onDateChange([value, toDate]);
+    } else {
+      onDateChange([fromDate, value]);
+    }
     setShowCalendar(false);
   };
 
   const handlePreviousFromDate = () => {
     const prevFromDate = new Date(fromDate);
     prevFromDate.setDate(prevFromDate.getDate() - 1);
-    setDateRange([prevFromDate, toDate]);
+    onDateChange([prevFromDate, toDate]);
   };
 
   const handleNextFromDate = () => {
     const nextFromDate = new Date(fromDate);
     nextFromDate.setDate(nextFromDate.getDate() + 1);
-    setDateRange([nextFromDate, toDate]);
+    onDateChange([nextFromDate, toDate]);
   };
 
   const handlePreviousToDate = () => {
     const prevToDate = new Date(toDate);
     prevToDate.setDate(prevToDate.getDate() - 1);
-    setDateRange([fromDate, prevToDate]);
+    onDateChange([fromDate, prevToDate]);
   };
 
   const handleNextToDate = () => {
     const nextToDate = new Date(toDate);
     nextToDate.setDate(nextToDate.getDate() + 1);
-    setDateRange([fromDate, nextToDate]);
+    onDateChange([fromDate, nextToDate]);
   };
 
   return (
@@ -81,7 +86,7 @@ function FlightCalendar() {
                 name="fromDate"
                 id="fromDate"
                 className="bg-transparent max-w-28 cursor-pointer focus:ring-0 outline-none border-none p-0"
-                onClick={handleInputClick}
+                onClick={() => handleInputClick(true)} // Edit fromDate
               />
             </div>
           </div>
@@ -114,7 +119,7 @@ function FlightCalendar() {
                 name="toDate"
                 id="toDate"
                 className="bg-transparent max-w-28 cursor-pointer border-none p-0"
-                onClick={handleInputClick}
+                onClick={() => handleInputClick(false)} // Edit toDate
               />
             </div>
           </div>
@@ -122,15 +127,13 @@ function FlightCalendar() {
             <button
               type="button"
               className="hover:bg-[#bdc1c6] hover:bg-opacity-10"
-              onClick={handlePreviousToDate}
-            >
+              onClick={handlePreviousToDate}>
               <ChevronLeftIcon />
             </button>
             <button
               type="button"
               className="hover:bg-[#bdc1c6] hover:bg-opacity-10"
-              onClick={handleNextToDate}
-            >
+              onClick={handleNextToDate}>
               <ChevronRightIcon />
             </button>
           </div>
@@ -140,9 +143,8 @@ function FlightCalendar() {
         <div>
           <Calendar
             className="absolute top-[90%] left-0 z-50 dark:bg-[#36373a] bg-white"
-            selectRange={true}
             onChange={handleCalendarChange}
-            value={dateRange}
+            value={editingFromDate ? fromDate : toDate}
             minDate={currentDate}
           />
         </div>

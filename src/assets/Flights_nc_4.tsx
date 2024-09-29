@@ -5,7 +5,7 @@ export default function () {
       fill="none"
       className="lg:w-[1248px] md:w-[1248px] w-[430px]"
       viewBox="0 0 1024 245">
-      <g clip-path="url(#a)">
+      <g clipPath="url(#a)">
         <path fill="#E8F0FE" d="M1023.97 0H32.2v203.21h991.77V0Z" />
         <path
           fill="#fff"
@@ -73,8 +73,8 @@ export default function () {
         />
         <path
           stroke="#E8F0FE"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           d="M183.26 95.88a28.902 28.902 0 0 1 22.35 10.55M321.13 81.09a26.892 26.892 0 0 1 25 17.2M303.83 80.52a57.355 57.355 0 0 1 4.26 11.38M414.18 79.86a27.522 27.522 0 0 1 4.3 6.1M369.69 96c.105-2.383.546-4.74 1.31-7M434.09 85.8a13.048 13.048 0 0 1 1.52 6.13M457.91 95.54a17.557 17.557 0 0 1 1.09 4.68M471.3 102a26.165 26.165 0 0 1 3-5.93M560.51 60.91a31.472 31.472 0 0 1 10.34 1.63M613.69 49.66a10.502 10.502 0 0 1 7.77-3.66M627 53.86a13.938 13.938 0 0 1 5.57-11.35M692.63 51.2a17.092 17.092 0 0 1 5.46 12.55M718.62 71.46a31.284 31.284 0 0 1 8.2-20.77M779.75 71.46a30.526 30.526 0 0 1-2.49 12.11M785.21 88.74a11.15 11.15 0 0 1-1.11 5"
         />
         <path
@@ -103,7 +103,7 @@ export default function () {
         />
         <path
           stroke="#fff"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M722.67 192.45s6.82-6.16 10.64-18.18"
         />
         <path
@@ -112,7 +112,7 @@ export default function () {
         />
         <path
           stroke="#fff"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="m731.35 179.45 4.15-1.36M728.84 184.35l-1.9-3.91M685.41 185.49a45.141 45.141 0 0 0-2.15-12.71M684.76 177.43l2.35-2.71M685.04 180.68l-3.43-2.44"
         />
         <path
@@ -121,8 +121,8 @@ export default function () {
         />
         <path
           stroke="#fff"
-          stroke-linecap="round"
-          stroke-miterlimit="10"
+          strokeLinecap="round"
+          strokeMiterlimit="10"
           d="M593.35 142.07V150M595.47 124.5v7.93M592.89 126.05v7.93M597.98 124.5v7.93M603.41 124.98v3.69M605.64 123.58v3.69M608.5 124.2v3.69M585.21 126.36v7.93M583.08 127.47v7.93M575.44 125.63v7.93M573.28 127.47v7.93M570.57 127.09v7.93M561.17 126.82v7.93M558 128.47v7.93M555.08 129.33v7.93M551.75 129.33v7.93M548.56 127.47v7.93M546.5 129.33v7.93M543.96 128.47v7.93M533.91 129.07V137M532.31 130.79v7.93M530.33 129.6v7.93M527.81 131.05v7.93M525.35 132.05v7.93M521.93 130.59v7.93M519.29 129.6v7.93M514.47 131.43v7.93M512.42 130.79v7.93M509.8 132.43v7.93M506.85 131.43v7.93M501.95 133.3v7.93M499.09 133.77v7.93M497.05 133.03v7.93M494.71 134.55v7.93M490.38 133.98v7.93M426.62 143.24v7.93M424.13 144.76v7.92M418.81 145.74v7.93M415.73 145.33v7.92M413.42 147.2v7.93M410.52 146.79v7.93M408.1 148.1v7.93"
         />
         <path
@@ -131,8 +131,8 @@ export default function () {
         />
         <path
           stroke="#E8F0FE"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           d="M76.32 167.36V25.77M76.32 71.46l-13.5-13.49M76.32 101.15l19.66-19.66M76.32 135.97l-22.73-22.73M123.1 71.46v82.84M123.1 108.65l8.8-8.79M123.1 135.97l-8.76-8.76M165.28 72.42v93.15M175.21 91.22l-9.93 9.93M165.28 142.77l-20.63-20.63M805.52 119.51v62.37M814.89 134.77l-8.68 8.68M792.41 156.72l13.11 13.12M842.47 83.57v79.71M850.77 102.64 843 110.4M831.22 134.77l11.25 11.24M881.55 40.48v105.53M887.44 75.6l-5.89 5.89M871.11 115.76l10.44 10.44M908.17 88.95v64.93M918.36 104.14l-10.19 10.19M897.98 129.13l10.19 10.19M950.48 53.9v82.22M960.48 79.32l-9.82 9.82M938.88 98.58l11.6 11.59"
         />
         <path
@@ -141,7 +141,7 @@ export default function () {
         />
         <path
           stroke="#fff"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M254.1 174.11s4.37-12.82 14.19-18.88M261.62 161.09l-.99-4.71M257.96 166.19h4.41M295.49 187.35s.78-10.71 6-16.9"
         />
         <path
@@ -150,7 +150,7 @@ export default function () {
         />
         <path
           stroke="#fff"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M269.53 170.94s2.67 8.66 1.85 13.8M298.33 175.75l-2.3-4.81M296.75 180.38l3.89-.93M267.55 175.42l3.25.65M270.54 173.57l1.93-1.94"
         />
         <path
@@ -181,16 +181,12 @@ export default function () {
           fill="#fff"
           d="m476 40 .25 9.47a.924.924 0 0 0 .368.72.922.922 0 0 0 .792.16l.25-.06-.28-10.63L476 40Z"
         />
-        <path
-          stroke="#AECBFA"
-          stroke-miterlimit="10"
-          d="M706.75 169.54h48.41"
-        />
+        <path stroke="#AECBFA" strokeMiterlimit="10" d="M706.75 169.54h48.41" />
         <path
           stroke="#F4AFB6"
-          stroke-linecap="round"
-          stroke-miterlimit="10"
-          stroke-width="1.98"
+          strokeLinecap="round"
+          strokeMiterlimit="10"
+          strokeWidth="1.98"
           d="M731.41 142a7.054 7.054 0 0 1-.21-4"
         />
         <path
@@ -256,8 +252,8 @@ export default function () {
         />
         <path
           stroke="#343757"
-          stroke-miterlimit="10"
-          stroke-width="1.24"
+          strokeMiterlimit="10"
+          strokeWidth="1.24"
           d="M720.28 123.1h-7a3.079 3.079 0 0 1-3.08-3.08v-4.14"
         />
         <path
@@ -275,7 +271,7 @@ export default function () {
         />
         <path
           stroke="#265BB6"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M739.54 149.94v-1.74a2.001 2.001 0 0 1 4 0v1.74"
         />
         <path
@@ -288,7 +284,7 @@ export default function () {
         />
         <path
           stroke="#fff"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           d="M755.22 184s.06-8.52 8.61-16M758.25 174.27l3.9-1.15M756.95 176.86l-1.84-2.97"
         />
       </g>

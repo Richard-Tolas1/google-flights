@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosError, AxiosResponse } from "axios";
 
-const axiosClient = (token: string | null = null): AxiosInstance => {
+const axiosClient = (): AxiosInstance => {
   const headers = {
-    "x-rapidapi-key": "4311749207msh30890bb21304310p1e2225jsndfa0c3eb3ff7",
+    "x-rapidapi-key": "ab33ff3159msh978ae20b105def3p1497eejsn6d4b19dc87f4",
     "x-rapidapi-host": "sky-scrapper.p.rapidapi.com",
   };
 

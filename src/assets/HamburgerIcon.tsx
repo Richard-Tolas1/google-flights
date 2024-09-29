@@ -9,20 +9,20 @@ export default function () {
       <path
         d="M29.1877 8.30273H4.74316"
         stroke="currentColor"
-        stroke-width="2.71606"
-        stroke-linecap="round"
+        strokeWidth="2.71606"
+        strokeLinecap="round"
       />
       <path
         d="M29.1877 16.4512H4.74316"
         stroke="currentColor"
-        stroke-width="2.71606"
-        stroke-linecap="round"
+        strokeWidth="2.71606"
+        strokeLinecap="round"
       />
       <path
         d="M29.1877 24.5996H4.74316"
         stroke="currentColor"
-        stroke-width="2.71606"
-        stroke-linecap="round"
+        strokeWidth="2.71606"
+        strokeLinecap="round"
       />
     </svg>
   );

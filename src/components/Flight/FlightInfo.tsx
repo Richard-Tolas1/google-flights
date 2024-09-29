@@ -1,109 +1,245 @@
-import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
-import SelectLabels from "../Select/Select";
 import { useState } from "react";
-import Input from "../InputFields/Input";
-import FiberManualRecordOutlinedIcon from "@mui/icons-material/FiberManualRecordOutlined";
-import SwapHorizSharpIcon from "@mui/icons-material/SwapHorizSharp";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import "react-date-picker/dist/DatePicker.css";
-import "react-calendar/dist/Calendar.css";
-import SearchIcon from "@mui/icons-material/Search";
-import "../../DatePicker.css";
-import FlightCalendar from "../Calendar/FlightCalendar";
+import axiosClient from "../../context/AppContext";
+import { Airport } from "../../schema/airport";
+import _ from "lodash";
+import { Flights } from "../../schema/flights";
+import FlightSearchForm from "./FlightSearchForm";
+import FlightResults from "./FlightResult";
+import Spinner from "../../assets/Spinner";
 
 function FlightInfo() {
-  const flightItineraries = [
-    { label: "Round Trip", value: "10" },
-    { label: "One Way", value: "20" },
-    { label: "Multi-city", value: "30" },
+  const flightTrips = [
+    { label: "Round Trip", value: "return" },
+    { label: "One Way", value: "no_return" },
+    { label: "Multi-city", value: "multi" },
   ];
 
   const flightType = [
-    { label: "Economy", value: "10" },
-    { label: "Premium economy", value: "20" },
-    { label: "Business", value: "30" },
-    { label: "First", value: "11" },
+    { label: "Economy", value: "economy" },
+    { label: "Premium economy", value: "premium_economy" },
+    { label: "Business", value: "business" },
+    { label: "First", value: "first" },
   ];
 
-  const [from, setFrom] = useState<string>("");
-  const [to, setTo] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>();
+
+  const [origin, setOrigin] = useState<string>("");
+
+  const [destination, setDestination] = useState<string>("");
+
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
+
+  const [originSuggestions, setOriginSuggestions] = useState<Airport[]>([]);
+
+  const [flights, setFlights] = useState<Flights>();
+
+  const [destinationSuggestions, setDestinationSuggestions] = useState<
+    Airport[]
+  >([]);
+
+  const sendRequest = axiosClient();
+
+  const [originAirport, setOriginAirport] = useState<Airport>();
+
+  const [destinationAirport, setDestinationAirport] = useState<Airport>();
 
   const [selectedItinerary, setSelectedItinerary] = useState<string>(
-    flightItineraries[0].value
+    flightTrips[0].value
   );
 
-  const handleChangeItinerary = (value: string) => {
-    setSelectedItinerary(value);
-  };
-
-  const [selectFlightType, setSelectedFlightType] = useState<string>(
-    flightType[0].value // Fixed to use flightType
+  const [selectedFlightType, setSelectedFlightType] = useState<string>(
+    flightType[0].value
   );
 
-  const handleChangeFlightType = (value: string) => {
-    setSelectedFlightType(value);
+  const [isOriginSelected, setIsOriginSelected] = useState(false);
+
+  const [isDestinationSelected, setIsDestinationSelected] = useState(false);
+
+  const [departureDate, setDepartureDate] = useState<Date>(new Date());
+
+  const [returnDate, setReturnDate] = useState<Date>(
+    new Date(new Date().setDate(new Date().getDate() + 10))
+  );
+
+  // To format Date
+  const formatDateToYMD = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   };
 
+  // To fetch airport suggestions
+  const fetchAirportSuggestions = async (
+    input: string,
+    setSuggestions: (suggestions: Airport[]) => void
+  ) => {
+    if (input.length < 3) {
+      setSuggestions([]);
+      return;
+    }
+
+    try {
+      const response = await sendRequest.get("/v1/flights/searchAirport", {
+        params: { query: input.substring(0, 3).toLowerCase() },
+      });
+      setSuggestions(response.data.data || []);
+    } catch (error) {
+      console.error("Error fetching airport suggestions:", error);
+    }
+  };
+
+  // To handle Origin suggestion fetch request
+  const debouncedFetchOriginSuggestions = _.debounce(
+    (input: string) => fetchAirportSuggestions(input, setOriginSuggestions),
+    300
+  );
+
+  // To handle Origin suggestion fetch request
+  const debouncedFetchDestinationSuggestions = _.debounce(
+    (input: string) =>
+      fetchAirportSuggestions(input, setDestinationSuggestions),
+    300
+  );
+
+  // Function to handle Origin Change
+  const handleOriginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOrigin(e.target.value);
+    debouncedFetchOriginSuggestions(e.target.value);
+    setIsOriginSelected(false);
+  };
+
+  // Function to handle Destination Change
+  const handleDestinationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDestination(e.target.value);
+    debouncedFetchDestinationSuggestions(e.target.value);
+    setIsDestinationSelected(false);
+  };
+
+  // Function to handle airport selection
+  const handleSelectAirport = (
+    airport: Airport,
+    setAirport: (airport: Airport) => void,
+    setField: (value: string) => void,
+    clearSuggestions: () => void,
+    setIsSelected: (selected: boolean) => void
+  ) => {
+    setField(airport.navigation.localizedName || "");
+    setAirport(airport);
+    clearSuggestions();
+    setIsSelected(true);
+  };
+
+  // Function to fetch flights
+  const searchFlights = async () => {
+    if (!originAirport || !destinationAirport) {
+      console.error("Origin or Destination airport not set.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const params: any = {
+        originSkyId: originAirport?.skyId,
+        destinationSkyId: destinationAirport?.skyId,
+        originEntityId: originAirport?.entityId,
+        destinationEntityId: destinationAirport?.entityId,
+        date: formatDateToYMD(departureDate),
+        cabinClass: selectedFlightType.toLowerCase(),
+        adults: "1",
+        sortBy: "best",
+        currency: "GBP",
+        market: "en-US",
+        countryCode: "US",
+      };
+
+      if (selectedItinerary === "return") {
+        params.returnDate = formatDateToYMD(returnDate);
+      }
+
+      if (Object.values(params).every((item) => item !== undefined)) {
+        const response = await sendRequest.get(
+          "v2/flights/searchFlightsWebComplete",
+          { params }
+        );
+        if (response.data.message == "success") {
+          setFlights(response.data.data);
+          setLoading(false);
+        } else {
+          console.error("Expected an array but received:", response.data.data);
+        }
+      }
+    } catch (error) {
+      console.error("Error searching for flights:", error);
+    }
+  };
+
+  // Function to handle flight search
+  const handleSearch = async () => {
+    setHasSearched(true);
+    await searchFlights();
+  };
+
+  // Function to handle location swap
   const swapLocations = () => {
-    setFrom(to);
-    setTo(from);
+    const temp = origin;
+    setOrigin(destination);
+    setDestination(temp);
   };
 
   return (
     <div>
-      <div className="dark:bg-[#37373a] bg-white shadow-lg md:mx-32 lg:mx-32 mx-5 rounded-[8px] px-4 pt-3 pb-8">
-        <div className="flex flex-row gap-5">
-          <SelectLabels
-            options={flightItineraries}
-            selectValue={selectedItinerary}
-            onChange={handleChangeItinerary}
-            icon={<SwapHorizIcon />}
-          />
-          <SelectLabels
-            options={flightType}
-            selectValue={selectFlightType}
-            onChange={handleChangeFlightType} // Fixed function name
-          />
-        </div>
-        <div className="flex gap-5 items-center">
-          <div className="w-full">
-            <div className="flex items-center">
-              <Input
-                type="text"
-                value={from}
-                placeHolder={from === "" ? "Where from?" : from}
-                onChange={(e) => setFrom(e.target.value)} // Fix here
-                icon={
-                  <FiberManualRecordOutlinedIcon sx={{ color: "#6e7276" }} />
-                }
-                className="w-full"
-              />
-              <div
-                className="border-x-2 border-y-0 border-[#6e7276] rounded-r-full rounded-l-full z-50 -ml-4 bg-[#37373a] p-1 cursor-pointer transform transition-transform duration-500 hover:rotate-180"
-                onClick={swapLocations}>
-                <SwapHorizSharpIcon />
-              </div>
-              <Input
-                type="text"
-                value={to}
-                placeHolder={to === "" ? "Where to?" : to}
-                onChange={(e) => setTo(e.target.value)} // Fix here
-                icon={<LocationOnOutlinedIcon sx={{ color: "#6e7276" }} />}
-                className="-ml-4 px-5 w-full"
-              />
-            </div>
+      <FlightSearchForm
+        origin={origin}
+        destination={destination}
+        onOriginChange={handleOriginChange}
+        onDestinationChange={handleDestinationChange}
+        onSwapLocations={swapLocations}
+        originSuggestions={originSuggestions}
+        destinationSuggestions={destinationSuggestions}
+        handleSearch={handleSearch}
+        onSelectOrigin={(airport) =>
+          handleSelectAirport(
+            airport,
+            setOriginAirport,
+            setOrigin,
+            () => setOriginSuggestions([]),
+            setIsOriginSelected
+          )
+        }
+        onSelectDestination={(airport) =>
+          handleSelectAirport(
+            airport,
+            setDestinationAirport,
+            setDestination,
+            () => setDestinationSuggestions([]),
+            setIsDestinationSelected
+          )
+        }
+        selectedItinerary={selectedItinerary}
+        onItineraryChange={setSelectedItinerary}
+        selectedFlightType={selectedFlightType}
+        onFlightTypeChange={setSelectedFlightType}
+        departureDate={departureDate}
+        returnDate={returnDate}
+        onDateChange={([start, end]) => {
+          setDepartureDate(start);
+          setReturnDate(end);
+        }}
+        flightTrips={flightTrips}
+        flightType={flightType}
+        isOriginSelected={isOriginSelected}
+        isDestinationSelected={isDestinationSelected}
+      />
+
+      {hasSearched &&
+        (loading ? (
+          <div className="flex justify-center mt-10">
+            <Spinner width="w-10" height="h-10" />
           </div>
-          <div className="w-full">
-            <FlightCalendar />
-          </div>
-        </div>
-      </div>
-      <div className="items-center flex justify-center">
-        <button className="rounded-3xl -mt-5 p-2 bg-[#8ab4f7] flex gap-1 items-center">
-          <SearchIcon sx={{ color: "black" }} />
-          <div className="dark:text-darkMode text-white">Search</div>
-        </button>
-      </div>
+        ) : (
+          <FlightResults flights={flights} />
+        ))}
     </div>
   );
 }
