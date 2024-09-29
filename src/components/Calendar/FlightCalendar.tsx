@@ -143,7 +143,7 @@ function FlightCalendar({
         <div>
           <Calendar
             className="absolute top-[90%] left-0 z-50 dark:bg-[#36373a] bg-white"
-            onChange={handleCalendarChange}
+            onChange={() => handleCalendarChange}
             value={editingFromDate ? fromDate : toDate}
             minDate={currentDate}
           />
